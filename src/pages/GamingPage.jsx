@@ -755,7 +755,7 @@ const PortfolioShowcase = () => {
       setActiveProject(p => (p + 1) % projects.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [projects.length]);
 
   return (
     <section ref={ref} className="py-20 sm:py-28 lg:py-32 relative overflow-hidden">

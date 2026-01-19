@@ -293,13 +293,13 @@ const ContactPage = () => {
                     { icon: Linkedin, color: 'hover:bg-blue-500/10 hover:text-blue-400' },
                     { icon: Github, color: 'hover:bg-gray-500/10 hover:text-gray-300' },
                   ].map((social, i) => (
-                    <a
+                    <button
                       key={i}
-                      href="#"
+                      type="button"
                       className={`w-12 h-12 rounded-xl bg-slate-800/50 border border-white/5 flex items-center justify-center text-gray-500 transition-all duration-300 ${social.color}`}
                     >
                       <social.icon className="w-5 h-5" />
-                    </a>
+                    </button>
                   ))}
                 </div>
               </div>

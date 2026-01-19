@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { 
-  ArrowRight, ExternalLink, Play, Filter, Grid, List,
-  Sparkles, Gamepad2, Film, Eye, Star
+import {
+  ArrowRight, Play, Grid, List,
+  Sparkles, Gamepad2
 } from 'lucide-react';
 import { useInView, useMousePosition } from '../hooks/useAnimations';
 
@@ -96,15 +96,15 @@ const PortfolioPage = () => {
     },
   ];
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
+  const filteredProjects = activeFilter === 'all'
+    ? projects
     : projects.filter(p => p.category === activeFilter);
 
   return (
     <div className="relative overflow-hidden py-20">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a1a] via-[#0d1a2d] to-[#1a0a20]" />
-      
+
       {/* Animated orbs */}
       <div
         className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full blur-[150px] opacity-20 pointer-events-none"
@@ -149,11 +149,10 @@ const PortfolioPage = () => {
                 <button
                   key={cat.id}
                   onClick={() => setActiveFilter(cat.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    activeFilter === cat.id
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${activeFilter === cat.id
                       ? 'bg-gradient-to-r from-cyan-500 to-pink-500 text-white'
                       : 'bg-slate-800/50 text-gray-400 hover:text-white hover:bg-slate-700/50 border border-white/5'
-                  }`}
+                    }`}
                 >
                   {cat.name}
                 </button>
@@ -178,34 +177,31 @@ const PortfolioPage = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className={`grid gap-8 transition-all duration-500 ${
-            viewMode === 'grid' 
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
+          <div className={`grid gap-8 transition-all duration-500 ${viewMode === 'grid'
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
               : 'grid-cols-1'
-          }`}>
+            }`}>
             {filteredProjects.map((project, index) => (
               <div
                 key={project.id}
                 className={`group relative transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
-                <div className={`relative rounded-2xl overflow-hidden bg-slate-900/50 border border-white/5 hover:border-cyan-500/30 backdrop-blur-sm transition-all duration-500 ${
-                  viewMode === 'list' ? 'flex' : ''
-                }`}>
+                <div className={`relative rounded-2xl overflow-hidden bg-slate-900/50 border border-white/5 hover:border-cyan-500/30 backdrop-blur-sm transition-all duration-500 ${viewMode === 'list' ? 'flex' : ''
+                  }`}>
                   {/* Image */}
                   <div className={`relative overflow-hidden ${viewMode === 'list' ? 'w-1/3' : ''}`}>
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
                     <img
                       src={project.image}
                       alt={project.title}
-                      className={`w-full object-cover group-hover:scale-110 transition-transform duration-700 ${
-                        viewMode === 'list' ? 'h-full' : 'aspect-video'
-                      }`}
+                      className={`w-full object-cover group-hover:scale-110 transition-transform duration-700 ${viewMode === 'list' ? 'h-full' : 'aspect-video'
+                        }`}
                     />
-                    
+
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
-                    
+
                     {/* Play Button */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/30 hover:scale-110 transition-transform duration-300 cursor-pointer">
