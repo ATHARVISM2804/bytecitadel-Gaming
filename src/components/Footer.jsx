@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Gamepad2, Mail, Phone,
+  Mail, Phone,
   Twitter, Instagram, Youtube, Twitch, Linkedin, Github,
   Heart, ChevronUp
 } from 'lucide-react';
@@ -94,23 +94,20 @@ const Footer = () => {
             {/* Brand Section */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-md">
               {/* Logo */}
-              <button onClick={() => scrollToSection('home')} className="group inline-flex items-center gap-3 mb-5">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl blur-lg opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 p-[2px]">
-                    <div className="w-full h-full rounded-xl bg-slate-900 flex items-center justify-center">
-                      <Gamepad2 className="w-6 h-6 text-cyan-400" />
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <span
-                    className="text-xl font-bold text-white tracking-wider"
-                    style={{ fontFamily: "'Orbitron', sans-serif" }}
-                  >
-                    BYTE<span className="text-cyan-400">CITADEL</span>
-                  </span>
-                </div>
+              <button onClick={() => scrollToSection('home')} className="group inline-flex items-center gap-4 mb-5">
+                <img
+                  src="https://res.cloudinary.com/dmhabztbf/image/upload/v1768294579/ac82306d-f412-4b17-925f-a921dee6de02-md_brnohf.jpg"
+                  alt="ByteCitadel Logo"
+                  className="w-12 h-12 rounded-lg object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                {/* Vertical divider line */}
+                <div className="w-[2px] h-8 bg-white/80"></div>
+                <span
+                  className="text-xl font-bold text-white tracking-wider"
+                  style={{ fontFamily: "'Orbitron', sans-serif" }}
+                >
+                  bytecitadel
+                </span>
               </button>
 
               <p className="text-gray-400 text-sm leading-relaxed mb-5">

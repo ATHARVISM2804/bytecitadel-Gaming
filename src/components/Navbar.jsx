@@ -98,13 +98,16 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <button onClick={() => scrollToSection('home')} className="group relative flex items-center gap-3">
+            <button onClick={() => scrollToSection('home')} className="group relative flex items-center gap-4">
               {/* Logo image */}
               <img
                 src="https://res.cloudinary.com/dmhabztbf/image/upload/v1768294579/ac82306d-f412-4b17-925f-a921dee6de02-md_brnohf.jpg"
                 alt="ByteCitadel Logo"
                 className="w-12 h-12 rounded-lg object-cover group-hover:scale-110 transition-transform duration-300"
               />
+
+              {/* Vertical divider line */}
+              <div className="w-[2px] h-8 bg-white/80"></div>
 
               {/* Logo text */}
               <span
