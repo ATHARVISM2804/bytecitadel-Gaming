@@ -857,6 +857,14 @@ const PortfolioShowcase = () => {
 const TechStackOrbit = () => {
   const [ref, isInView] = useInView();
   const [hoveredTool, setHoveredTool] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+
+  // Track window width for responsive orbit
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const tools = [
     { name: 'Adobe Animate', icon: '🎨', color: 'from-red-500 to-orange-500', borderColor: 'border-orange-500/50', glowColor: 'rgba(249, 115, 22, 0.4)' },
@@ -879,17 +887,28 @@ const TechStackOrbit = () => {
     return { x, y, angle: (angle * 180) / Math.PI + 90 };
   };
 
-  const orbitRadius = 220; // Radius for the orbit path - increased for better spacing
+  // Responsive orbit radius - smaller on mobile to prevent overflow
+  const getOrbitRadius = () => {
+    if (windowWidth < 400) return 110;
+    if (windowWidth < 480) return 125;
+    if (windowWidth < 640) return 140;
+    if (windowWidth < 768) return 170;
+    return 220;
+  };
+
+  const orbitRadius = getOrbitRadius();
+  const isMobile = windowWidth < 640;
+  const isSmallMobile = windowWidth < 400;
 
   return (
-    <section ref={ref} className="py-20 sm:py-28 lg:py-32 relative overflow-hidden">
+    <section ref={ref} className="py-16 sm:py-28 lg:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d1a2d] to-[#0a0a1a]" />
 
       {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-purple-500/10 via-cyan-500/10 to-pink-500/10 blur-[100px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-gradient-to-r from-purple-500/10 via-cyan-500/10 to-pink-500/10 blur-[100px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className={`text-center mb-14 sm:mb-16 lg:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`text-center mb-10 sm:mb-16 lg:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-purple-500/30 bg-purple-500/5 backdrop-blur-sm mb-6">
             <Cpu className="w-5 h-5 text-purple-400" />
             <span className="text-xs text-purple-400 tracking-[0.2em] uppercase font-bold">Arsenal</span>
@@ -900,11 +919,11 @@ const TechStackOrbit = () => {
           </h2>
         </div>
 
-        {/* Orbiting Tools Display */}
-        <div className="relative h-[560px] sm:h-[620px] flex items-center justify-center">
-          {/* Orbit Ring - matches the actual orbit path */}
+        {/* Orbiting Tools Display - responsive height */}
+        <div className="relative h-[380px] xs:h-[420px] sm:h-[520px] md:h-[560px] lg:h-[620px] flex items-center justify-center">
+          {/* Orbit Ring - matches the actual orbit path, hidden on small mobile */}
           <div
-            className="absolute rounded-full border-2 border-dashed animate-pulse"
+            className="absolute rounded-full border-2 border-dashed animate-pulse hidden sm:block"
             style={{
               width: `${orbitRadius * 2 + 100}px`,
               height: `${orbitRadius * 2 + 100}px`,
@@ -912,11 +931,19 @@ const TechStackOrbit = () => {
             }}
           />
           <div
-            className="absolute rounded-full border"
+            className="absolute rounded-full border hidden sm:block"
             style={{
               width: `${orbitRadius * 2 + 60}px`,
               height: `${orbitRadius * 2 + 60}px`,
               borderColor: 'rgba(6, 182, 212, 0.15)',
+            }}
+          />
+          {/* Mobile orbit ring - smaller and simpler */}
+          <div
+            className="absolute rounded-full border border-purple-500/20 sm:hidden"
+            style={{
+              width: `${orbitRadius * 2 + 40}px`,
+              height: `${orbitRadius * 2 + 40}px`,
             }}
           />
 
@@ -926,19 +953,19 @@ const TechStackOrbit = () => {
               {/* Glow behind center */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/30 to-pink-500/30 blur-xl animate-pulse" />
 
-              <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 p-[3px] shadow-2xl"
+              <div className={`relative rounded-full bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 p-[3px] shadow-2xl ${isSmallMobile ? 'w-24 h-24' : isMobile ? 'w-28 h-28' : 'w-32 h-32 sm:w-40 sm:h-40'}`}
                 style={{ boxShadow: '0 0 60px rgba(139, 92, 246, 0.5)' }}>
                 <div className="w-full h-full rounded-full bg-slate-900/95 backdrop-blur-sm flex items-center justify-center">
                   <div className="text-center">
-                    <Joystick className="w-10 h-10 sm:w-12 sm:h-12 text-white mx-auto mb-2" />
-                    <span className="text-white font-bold text-xs sm:text-sm tracking-wider">CORE TECH</span>
+                    <Joystick className={`text-white mx-auto mb-1 sm:mb-2 ${isSmallMobile ? 'w-7 h-7' : isMobile ? 'w-8 h-8' : 'w-10 h-10 sm:w-12 sm:h-12'}`} />
+                    <span className={`text-white font-bold tracking-wider ${isSmallMobile ? 'text-[8px]' : 'text-[10px] sm:text-xs sm:text-sm'}`}>CORE TECH</span>
                   </div>
                 </div>
               </div>
 
               {/* Rotating ring around center */}
               <div
-                className="absolute -inset-4 rounded-full border-2 border-dashed border-cyan-500/30"
+                className="absolute -inset-3 sm:-inset-4 rounded-full border-2 border-dashed border-cyan-500/30"
                 style={{ animation: 'spin 20s linear infinite' }}
               />
             </div>
@@ -964,30 +991,30 @@ const TechStackOrbit = () => {
                 onMouseLeave={() => setHoveredTool(null)}
               >
                 <div
-                  className={`group relative cursor-pointer transition-transform duration-500 ${isHovered ? 'scale-125' : 'scale-100'}`}
+                  className={`group relative cursor-pointer transition-transform duration-500 ${isHovered ? 'scale-110 sm:scale-125' : 'scale-100'}`}
                 >
                   {/* Glow effect on hover */}
                   <div
-                    className={`absolute inset-0 rounded-2xl blur-xl transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute inset-0 rounded-xl sm:rounded-2xl blur-xl transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
                     style={{ backgroundColor: tool.glowColor }}
                   />
 
-                  {/* Tool Card */}
+                  {/* Tool Card - smaller on mobile */}
                   <div
-                    className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br ${tool.color} p-[2px] transition-all duration-500`}
+                    className={`relative rounded-xl sm:rounded-2xl bg-gradient-to-br ${tool.color} p-[2px] transition-all duration-500 ${isSmallMobile ? 'w-14 h-14' : isMobile ? 'w-16 h-16' : 'w-20 h-20 sm:w-24 sm:h-24'}`}
                     style={{
                       boxShadow: isHovered ? `0 0 30px ${tool.glowColor}` : '0 4px 20px rgba(0, 0, 0, 0.3)',
                     }}
                   >
-                    <div className={`w-full h-full rounded-2xl bg-slate-900/95 backdrop-blur-sm flex flex-col items-center justify-center border ${tool.borderColor} transition-all duration-300`}>
-                      <span className="text-2xl sm:text-3xl mb-1">{tool.icon}</span>
-                      <span className="text-[9px] sm:text-[10px] text-gray-300 font-medium text-center px-1 leading-tight">{tool.name}</span>
+                    <div className={`w-full h-full rounded-xl sm:rounded-2xl bg-slate-900/95 backdrop-blur-sm flex flex-col items-center justify-center border ${tool.borderColor} transition-all duration-300`}>
+                      <span className={`${isSmallMobile ? 'text-lg' : isMobile ? 'text-xl' : 'text-2xl sm:text-3xl'} mb-0.5 sm:mb-1`}>{tool.icon}</span>
+                      <span className={`text-gray-300 font-medium text-center px-1 leading-tight ${isSmallMobile ? 'text-[7px]' : isMobile ? 'text-[8px]' : 'text-[9px] sm:text-[10px]'}`}>{tool.name}</span>
                     </div>
                   </div>
 
-                  {/* Floating label on hover */}
+                  {/* Floating label on hover - hidden on mobile */}
                   <div
-                    className={`absolute -bottom-10 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-800/95 backdrop-blur-sm rounded-lg text-xs text-white font-bold whitespace-nowrap border border-white/10 transition-all duration-300 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+                    className={`absolute -bottom-10 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-800/95 backdrop-blur-sm rounded-lg text-xs text-white font-bold whitespace-nowrap border border-white/10 transition-all duration-300 hidden sm:block ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
                     style={{ boxShadow: `0 4px 20px ${tool.glowColor}` }}
                   >
                     {tool.name}
@@ -998,8 +1025,8 @@ const TechStackOrbit = () => {
             );
           })}
 
-          {/* Decorative particles */}
-          {[...Array(8)].map((_, i) => (
+          {/* Decorative particles - fewer on mobile */}
+          {[...Array(isMobile ? 4 : 8)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute w-1 h-1 rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 animate-pulse"
