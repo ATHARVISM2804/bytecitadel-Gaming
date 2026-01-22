@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Menu, X, Gamepad2, Sparkles,
+import {
+  Menu, X,
   Mail, Phone
 } from 'lucide-react';
 
@@ -15,7 +15,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Update active section based on scroll position
       const sections = ['home', 'portfolio', 'about', 'contact'];
       for (const section of sections) {
@@ -55,7 +55,7 @@ const Navbar = () => {
       const offset = 80; // Account for fixed navbar
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-      
+
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
@@ -77,11 +77,10 @@ const Navbar = () => {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled 
-            ? 'py-3 bg-slate-900/90 backdrop-blur-xl border-b border-cyan-500/10 shadow-lg shadow-cyan-500/5' 
-            : 'py-5 bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? 'py-3 bg-slate-900/90 backdrop-blur-xl border-b border-cyan-500/10 shadow-lg shadow-cyan-500/5'
+          : 'py-5 bg-transparent'
+          }`}
       >
         {/* Animated glow following cursor */}
         <div
@@ -100,29 +99,20 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button onClick={() => scrollToSection('home')} className="group relative flex items-center gap-3">
-              {/* Animated logo icon */}
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl blur-lg opacity-50 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" />
-                <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 p-[2px] group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-full h-full rounded-xl bg-slate-900 flex items-center justify-center">
-                    <Gamepad2 className="w-6 h-6 text-cyan-400 group-hover:text-white transition-colors duration-300" />
-                  </div>
-                </div>
-              </div>
-              
-              {/* Logo text */}
-              <div className="flex flex-col">
-                <span 
-                  className="text-lg sm:text-xl font-bold text-white tracking-wider"
-                  style={{ fontFamily: "'Orbitron', sans-serif" }}
-                >
-                  BYTE<span className="text-cyan-400">CITADEL</span>
-                </span>
-                <span className="text-[10px] text-gray-500 tracking-[0.3em] uppercase">Gaming Studio</span>
-              </div>
+              {/* Logo image */}
+              <img
+                src="https://res.cloudinary.com/dmhabztbf/image/upload/v1768294579/ac82306d-f412-4b17-925f-a921dee6de02-md_brnohf.jpg"
+                alt="ByteCitadel Logo"
+                className="w-12 h-12 rounded-lg object-cover group-hover:scale-110 transition-transform duration-300"
+              />
 
-              {/* Sparkle effect on hover */}
-              <Sparkles className="absolute -top-1 -right-1 w-4 h-4 text-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+              {/* Logo text */}
+              <span
+                className="text-lg sm:text-xl font-bold text-white tracking-wider"
+                style={{ fontFamily: "'Orbitron', sans-serif" }}
+              >
+                bytecitadel
+              </span>
             </button>
 
             {/* Desktop Navigation */}
@@ -131,20 +121,19 @@ const Navbar = () => {
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.section)}
-                  className={`group relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-1 ${
-                    isActive(link.section)
-                      ? 'text-cyan-400'
-                      : 'text-gray-300 hover:text-white'
-                  }`}
+                  className={`group relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-1 ${isActive(link.section)
+                    ? 'text-cyan-400'
+                    : 'text-gray-300 hover:text-white'
+                    }`}
                 >
                   {/* Active indicator */}
                   {isActive(link.section) && (
                     <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-cyan-400 rounded-full" />
                   )}
-                  
+
                   {/* Hover background */}
                   <span className="absolute inset-0 rounded-lg bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+
                   <span className="relative">{link.name}</span>
                 </button>
               ))}
@@ -162,7 +151,7 @@ const Navbar = () => {
                 <span className="relative text-transparent bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text">
                   Start Quest
                 </span>
-                
+
                 {/* Shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </button>
@@ -189,36 +178,33 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
       >
         {/* Backdrop */}
-        <div 
+        <div
           className="absolute inset-0 bg-slate-900/95 backdrop-blur-xl"
           onClick={() => setIsMobileMenuOpen(false)}
         />
-        
+
         {/* Menu Content */}
-        <div className={`relative h-full flex flex-col pt-24 px-6 pb-8 transition-transform duration-500 ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}>
+        <div className={`relative h-full flex flex-col pt-24 px-6 pb-8 transition-transform duration-500 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}>
           {/* Decorative elements */}
           <div className="absolute top-1/4 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px]" />
           <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-pink-500/10 rounded-full blur-[100px]" />
-          
+
           {/* Navigation Links */}
           <div className="relative space-y-2">
             {navLinks.map((link, index) => (
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.section)}
-                className={`group w-full flex items-center justify-between px-4 py-4 rounded-xl text-lg font-medium transition-all duration-300 ${
-                  isActive(link.section)
-                    ? 'text-cyan-400 bg-cyan-500/10'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
-                }`}
-                style={{ 
+                className={`group w-full flex items-center justify-between px-4 py-4 rounded-xl text-lg font-medium transition-all duration-300 ${isActive(link.section)
+                  ? 'text-cyan-400 bg-cyan-500/10'
+                  : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
+                style={{
                   transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms',
                   transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(50px)',
                   opacity: isMobileMenuOpen ? 1 : 0,
@@ -241,7 +227,7 @@ const Navbar = () => {
             >
               START YOUR QUEST
             </button>
-            
+
             {/* Contact info */}
             <div className="flex items-center justify-center gap-6 text-gray-500 text-sm">
               <a href="mailto:hello@bytecitadel.com" className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
