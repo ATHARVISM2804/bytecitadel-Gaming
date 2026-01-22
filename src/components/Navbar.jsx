@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Menu, X,
-  Mail, Phone, Gamepad2, Zap
+  Mail, Phone, Gamepad2, Zap, Globe, ChevronDown
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -10,7 +10,19 @@ const Navbar = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeSection, setActiveSection] = useState('home');
   const [hoverIndex, setHoverIndex] = useState(null);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
   const navRef = useRef(null);
+  const langDropdownRef = useRef(null);
+
+  const languages = [
+    { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
+    { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳' },
+    { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી', flag: '🇮🇳' },
+    { code: 'mr', name: 'Marathi', nativeName: 'मराठी', flag: '🇮🇳' },
+    { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்', flag: '🇮🇳' },
+    { code: 'te', name: 'Telugu', nativeName: 'తెలుగు', flag: '🇮🇳' },
+  ];
 
   // Track scroll position
   useEffect(() => {
@@ -47,6 +59,17 @@ const Navbar = () => {
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(e.target)) {
+        setIsLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Smooth scroll to section
@@ -172,10 +195,10 @@ const Navbar = () => {
                     {/* Active/Hover background pill */}
                     <div
                       className={`absolute inset-0 rounded-full transition-all duration-300 ${isActive(link.section)
-                          ? 'bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 border border-cyan-500/30'
-                          : hoverIndex === index
-                            ? 'bg-white/5 border border-white/10'
-                            : 'border border-transparent'
+                        ? 'bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 border border-cyan-500/30'
+                        : hoverIndex === index
+                          ? 'bg-white/5 border border-white/10'
+                          : 'border border-transparent'
                         }`}
                     />
 
@@ -201,8 +224,63 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Enhanced CTA Button */}
+            {/* Language Dropdown & CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
+              {/* Language Dropdown */}
+              <div className="relative" ref={langDropdownRef}>
+                <button
+                  onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                  className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 hover:scale-105 ${isLangDropdownOpen
+                    ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30'
+                    : 'bg-slate-800/50 border border-white/10 hover:border-cyan-500/30'
+                    }`}
+                >
+                  <Globe className="w-4 h-4 text-cyan-400" />
+                  <span className="text-gray-300 group-hover:text-white transition-colors">
+                    {languages.find(l => l.code === selectedLanguage)?.name || 'English'}
+                  </span>
+                  <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Dropdown Menu */}
+                <div
+                  className={`absolute right-0 mt-2 w-56 rounded-xl overflow-hidden transition-all duration-300 origin-top z-50 ${isLangDropdownOpen
+                    ? 'opacity-100 scale-100 translate-y-0'
+                    : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+                    }`}
+                >
+                  {/* Gradient border */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 rounded-xl" />
+                  <div className="absolute inset-[1px] bg-[#0a0a1a] rounded-xl" />
+
+                  <div className="relative py-2 max-h-[300px] overflow-y-auto">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setSelectedLanguage(lang.code);
+                          setIsLangDropdownOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 ${selectedLanguage === lang.code
+                          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-400'
+                          : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                          }`}
+                      >
+                        <span className="text-lg">{lang.flag}</span>
+                        <div className="flex flex-col items-start">
+                          <span className="font-medium">{lang.name}</span>
+                          <span className="text-xs text-gray-500">{lang.nativeName}</span>
+                        </div>
+                        {selectedLanguage === lang.code && (
+                          <div className="ml-auto w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Button */}
               <button
                 onClick={() => scrollToSection('contact')}
                 className="group relative px-6 py-2.5 rounded-xl font-bold text-sm overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)]"
