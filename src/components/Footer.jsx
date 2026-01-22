@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Mail, Phone,
-  Twitter, Instagram, Youtube, Twitch, Linkedin, Github,
+  Instagram, Youtube, Linkedin,
   Heart, ChevronUp
 } from 'lucide-react';
 
@@ -50,12 +50,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'Twitter', icon: Twitter, url: '#', color: 'hover:text-cyan-400 hover:border-cyan-400' },
     { name: 'Instagram', icon: Instagram, url: '#', color: 'hover:text-pink-400 hover:border-pink-400' },
-    { name: 'YouTube', icon: Youtube, url: '#', color: 'hover:text-red-400 hover:border-red-400' },
-    { name: 'Twitch', icon: Twitch, url: '#', color: 'hover:text-purple-400 hover:border-purple-400' },
     { name: 'LinkedIn', icon: Linkedin, url: '#', color: 'hover:text-blue-400 hover:border-blue-400' },
-    { name: 'GitHub', icon: Github, url: '#', color: 'hover:text-gray-300 hover:border-gray-300' },
+    { name: 'YouTube', icon: Youtube, url: '#', color: 'hover:text-red-400 hover:border-red-400' },
   ];
 
   return (
