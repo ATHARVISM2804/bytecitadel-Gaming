@@ -143,39 +143,96 @@ const Navbar = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Enhanced Logo */}
-            <button onClick={() => scrollToSection('home')} className="group relative flex items-center gap-3">
-              {/* Glow behind logo */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-pink-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            {/* Logo and Mobile Language Dropdown */}
+            <div className="flex items-center gap-3">
+              {/* Enhanced Logo */}
+              <button onClick={() => scrollToSection('home')} className="group relative flex items-center gap-3">
+                {/* Glow behind logo */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-pink-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              {/* Logo container with border */}
-              <div className="relative">
-                <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-xl opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
-                <img
-                  src="https://res.cloudinary.com/dmhabztbf/image/upload/v1768294579/ac82306d-f412-4b17-925f-a921dee6de02-md_brnohf.jpg"
-                  alt="ByteCitadel Logo"
-                  className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-lg object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+                {/* Logo container with border */}
+                <div className="relative">
+                  <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-xl opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
+                  <img
+                    src="https://res.cloudinary.com/dmhabztbf/image/upload/v1768294579/ac82306d-f412-4b17-925f-a921dee6de02-md_brnohf.jpg"
+                    alt="ByteCitadel Logo"
+                    className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-lg object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
 
-              {/* Animated divider with glow */}
-              <div className="relative h-7 w-[2px] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-cyan-400 via-purple-400 to-pink-400" />
-                <div className="absolute inset-0 bg-gradient-to-b from-cyan-400 via-purple-400 to-pink-400 blur-sm" />
-              </div>
+                {/* Animated divider with glow */}
+                <div className="relative h-7 w-[2px] overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-b from-cyan-400 via-purple-400 to-pink-400" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-cyan-400 via-purple-400 to-pink-400 blur-sm" />
+                </div>
 
-              {/* Logo text with hover effect */}
-              <div className="relative">
-                <span
-                  className="text-base sm:text-lg font-bold tracking-wider bg-gradient-to-r from-white via-white to-gray-300 bg-clip-text text-transparent group-hover:from-cyan-400 group-hover:to-pink-400 transition-all duration-500"
-                  style={{ fontFamily: "'Orbitron', sans-serif" }}
+                {/* Logo text with hover effect - visible on all screens */}
+                <div className="relative">
+                  <span
+                    className="text-base sm:text-lg font-bold tracking-wider bg-gradient-to-r from-white via-white to-gray-300 bg-clip-text text-transparent group-hover:from-cyan-400 group-hover:to-pink-400 transition-all duration-500"
+                    style={{ fontFamily: "'Orbitron', sans-serif" }}
+                  >
+                    bytecitadel
+                  </span>
+                  {/* Underline animation */}
+                  <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-400 to-pink-400 group-hover:w-full transition-all duration-500" />
+                </div>
+              </button>
+
+              {/* Mobile Language Dropdown - shown only on small screens */}
+              <div className="relative lg:hidden" ref={langDropdownRef}>
+                <button
+                  onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                  className={`group relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-medium text-xs transition-all duration-300 ${isLangDropdownOpen
+                    ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30'
+                    : 'bg-slate-800/50 border border-white/10'
+                    }`}
                 >
-                  bytecitadel
-                </span>
-                {/* Underline animation */}
-                <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-cyan-400 to-pink-400 group-hover:w-full transition-all duration-500" />
+                  <Globe className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="text-gray-300 uppercase text-[10px] font-bold">
+                    {selectedLanguage}
+                  </span>
+                  <ChevronDown className={`w-3 h-3 text-gray-400 transition-transform duration-300 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Mobile Dropdown Menu */}
+                <div
+                  className={`absolute left-0 mt-2 w-48 rounded-xl overflow-hidden transition-all duration-300 origin-top z-50 ${isLangDropdownOpen
+                    ? 'opacity-100 scale-100 translate-y-0'
+                    : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+                    }`}
+                >
+                  {/* Gradient border */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 rounded-xl" />
+                  <div className="absolute inset-[1px] bg-[#0a0a1a] rounded-xl" />
+
+                  <div className="relative py-2 max-h-[280px] overflow-y-auto">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setSelectedLanguage(lang.code);
+                          setIsLangDropdownOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-sm transition-all duration-200 ${selectedLanguage === lang.code
+                          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-400'
+                          : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                          }`}
+                      >
+                        <span className="text-base">{lang.flag}</span>
+                        <div className="flex flex-col items-start">
+                          <span className="font-medium text-xs">{lang.name}</span>
+                          <span className="text-[10px] text-gray-500">{lang.nativeName}</span>
+                        </div>
+                        {selectedLanguage === lang.code && (
+                          <div className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,0.8)]" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </button>
+            </div>
 
             {/* Enhanced Desktop Navigation */}
             <div className="hidden lg:flex items-center">
