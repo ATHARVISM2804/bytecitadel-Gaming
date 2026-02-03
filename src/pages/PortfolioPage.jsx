@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  ArrowRight, Play, Grid, List,
+  ArrowRight, Grid, List,
   Sparkles, Gamepad2
 } from 'lucide-react';
 import { useInView, useMousePosition } from '../hooks/useAnimations';
