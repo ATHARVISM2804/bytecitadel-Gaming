@@ -13,7 +13,17 @@ import AboutPage from './pages/AboutPage';
 // Main App Component - Single Page
 function App() {
   return (
-    <div className="min-h-screen bg-[#0a0a1a] text-white">
+    <div className="min-h-screen text-white relative">
+      {/* Fixed 2D Animated Gaming Background */}
+      <div className="animated-bg" aria-hidden="true">
+        <img
+          src={`${process.env.PUBLIC_URL}/gaming_background.png`}
+          alt=""
+          className="animated-bg-image"
+        />
+        <div className="animated-bg-overlay" />
+      </div>
+
       <Navbar />
       <main>
         {/* Home / Hero Section */}

@@ -176,9 +176,9 @@ const HeroSection = () => {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Cyberpunk Background */}
+      {/* Cyberpunk Background Effects (transparent to show animated bg) */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a1a] via-[#0d1a2d] to-[#1a0a20]" />
+        {/* Removed solid bg - now uses fixed animated background from App.jsx */}
 
         {/* Animated Grid Floor Effect */}
         <div
@@ -397,7 +397,7 @@ const StatsShowcase = () => {
 
   return (
     <section ref={ref} className="py-16 sm:py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#0d1a2d] to-[#0a0a1a]" />
+      {/* Transparent to show animated background */}
 
       {/* Animated Border Lines */}
       <div className="absolute top-0 left-0 w-full h-px overflow-hidden">
@@ -492,7 +492,7 @@ const ExpertiseHexGrid = () => {
 
   return (
     <section ref={ref} className="py-20 sm:py-28 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] via-[#0d1a2d] to-[#0a0a1a]" />
+      {/* Transparent to show animated background */}
 
       {/* Decorative orbs */}
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px]" />
@@ -635,7 +635,7 @@ const ProcessTimeline = () => {
 
   return (
     <section ref={ref} className="py-20 sm:py-28 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0d1a2d] via-[#0a0a1a] to-[#0d1a2d]" />
+      {/* Transparent to show animated background */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className={`text-center mb-14 sm:mb-16 lg:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -759,7 +759,7 @@ const PortfolioShowcase = () => {
 
   return (
     <section ref={ref} className="py-20 sm:py-28 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0d1a2d] via-[#0a0a1a] to-[#0d1a2d]" />
+      {/* Transparent to show animated background */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className={`text-center mb-14 sm:mb-16 lg:mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -902,7 +902,6 @@ const TechStackOrbit = () => {
 
   return (
     <section ref={ref} className="py-16 sm:py-28 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0d1a2d] to-[#0a0a1a]" />
 
       {/* Background glow effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-gradient-to-r from-purple-500/10 via-cyan-500/10 to-pink-500/10 blur-[100px]" />
@@ -1060,7 +1059,6 @@ const CTASection = () => {
 
   return (
     <section ref={ref} className="py-20 sm:py-28 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a1a] to-[#0d1a2d]" />
 
       {/* Animated background elements */}
       <div

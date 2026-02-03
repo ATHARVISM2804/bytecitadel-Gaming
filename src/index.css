@@ -60,9 +60,12 @@ body {
 
 /* Custom Animations */
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
@@ -73,12 +76,15 @@ body {
     transform: translateY(100vh) rotate(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(-100vh) rotate(720deg);
     opacity: 0;
@@ -86,9 +92,12 @@ body {
 }
 
 @keyframes gradient-x {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -98,6 +107,7 @@ body {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -107,24 +117,30 @@ body {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
 }
 
 @keyframes glitch-1 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(-2px, 2px);
     opacity: 0.7;
   }
+
   25% {
     transform: translate(2px, -2px);
     opacity: 0.5;
   }
+
   50% {
     transform: translate(-1px, 1px);
     opacity: 0.7;
   }
+
   75% {
     transform: translate(1px, -1px);
     opacity: 0.5;
@@ -132,18 +148,23 @@ body {
 }
 
 @keyframes glitch-2 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(2px, -2px);
     opacity: 0.7;
   }
+
   25% {
     transform: translate(-2px, 2px);
     opacity: 0.5;
   }
+
   50% {
     transform: translate(1px, -1px);
     opacity: 0.7;
   }
+
   75% {
     transform: translate(-1px, 1px);
     opacity: 0.5;
@@ -154,18 +175,23 @@ body {
   0% {
     transform: translate(0);
   }
+
   20% {
     transform: translate(-3px, 3px);
   }
+
   40% {
     transform: translate(-3px, -3px);
   }
+
   60% {
     transform: translate(3px, 3px);
   }
+
   80% {
     transform: translate(3px, -3px);
   }
+
   100% {
     transform: translate(0);
   }
@@ -175,6 +201,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -184,15 +211,19 @@ body {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
+
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(6, 182, 212, 0.6);
   }
@@ -203,6 +234,7 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -210,9 +242,12 @@ body {
 }
 
 @keyframes bounce-soft {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -222,6 +257,7 @@ body {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -304,27 +340,27 @@ body {
 /* Glow Effects */
 .glow-cyan {
   box-shadow: 0 0 20px rgba(6, 182, 212, 0.3),
-              0 0 40px rgba(6, 182, 212, 0.2),
-              0 0 60px rgba(6, 182, 212, 0.1);
+    0 0 40px rgba(6, 182, 212, 0.2),
+    0 0 60px rgba(6, 182, 212, 0.1);
 }
 
 .glow-pink {
   box-shadow: 0 0 20px rgba(236, 72, 153, 0.3),
-              0 0 40px rgba(236, 72, 153, 0.2),
-              0 0 60px rgba(236, 72, 153, 0.1);
+    0 0 40px rgba(236, 72, 153, 0.2),
+    0 0 60px rgba(236, 72, 153, 0.1);
 }
 
 .glow-purple {
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.3),
-              0 0 40px rgba(168, 85, 247, 0.2),
-              0 0 60px rgba(168, 85, 247, 0.1);
+    0 0 40px rgba(168, 85, 247, 0.2),
+    0 0 60px rgba(168, 85, 247, 0.1);
 }
 
 /* Text Effects */
 .text-shadow-glow {
   text-shadow: 0 0 10px rgba(6, 182, 212, 0.5),
-               0 0 20px rgba(6, 182, 212, 0.3),
-               0 0 30px rgba(6, 182, 212, 0.2);
+    0 0 20px rgba(6, 182, 212, 0.3),
+    0 0 30px rgba(6, 182, 212, 0.2);
 }
 
 /* Gaming Page Specific Styles */
@@ -340,7 +376,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background: 
+  background:
     radial-gradient(ellipse at 20% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 50%, rgba(236, 72, 153, 0.03) 0%, transparent 50%);
   z-index: 0;
@@ -381,11 +417,15 @@ body {
 }
 
 /* Input Styles */
-input, textarea, select {
+input,
+textarea,
+select {
   transition: all 0.3s ease;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   border-color: rgba(6, 182, 212, 0.5);
   box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
@@ -416,7 +456,7 @@ input:focus, textarea:focus, select:focus {
   .text-responsive-xl {
     font-size: 2rem;
   }
-  
+
   .text-responsive-2xl {
     font-size: 2.5rem;
   }
@@ -426,7 +466,7 @@ input:focus, textarea:focus, select:focus {
   .text-responsive-xl {
     font-size: 3rem;
   }
-  
+
   .text-responsive-2xl {
     font-size: 4rem;
   }
@@ -436,7 +476,7 @@ input:focus, textarea:focus, select:focus {
   .text-responsive-xl {
     font-size: 4rem;
   }
-  
+
   .text-responsive-2xl {
     font-size: 5rem;
   }
@@ -478,6 +518,7 @@ input:focus, textarea:focus, select:focus {
 
 /* Backdrop blur fallback */
 @supports not (backdrop-filter: blur(10px)) {
+
   .backdrop-blur-sm,
   .backdrop-blur-md,
   .backdrop-blur-lg,
@@ -493,8 +534,72 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
+/* Animated 2D Gaming Background */
+@keyframes bg-float {
+
+  0%,
+  100% {
+    transform: scale(1.05) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.05) translateY(-15px);
+  }
+}
+
+@keyframes bg-pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.animated-bg-image {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  opacity: 0.7;
+  animation: bg-float 20s ease-in-out infinite, bg-pulse 8s ease-in-out infinite;
+}
+
+.animated-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, var(--color-dark) 90%);
+  pointer-events: none;
+}
+
+/* Ensure all content layers above the background */
+.gaming-page,
+main,
+nav,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
 /* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

@@ -102,8 +102,7 @@ const PortfolioPage = () => {
 
   return (
     <div className="relative overflow-hidden py-20">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a1a] via-[#0d1a2d] to-[#1a0a20]" />
+      {/* Background transparent to show animated bg from App.jsx */}
 
       {/* Animated orbs */}
       <div
@@ -150,8 +149,8 @@ const PortfolioPage = () => {
                   key={cat.id}
                   onClick={() => setActiveFilter(cat.id)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${activeFilter === cat.id
-                      ? 'bg-gradient-to-r from-cyan-500 to-pink-500 text-white'
-                      : 'bg-slate-800/50 text-gray-400 hover:text-white hover:bg-slate-700/50 border border-white/5'
+                    ? 'bg-gradient-to-r from-cyan-500 to-pink-500 text-white'
+                    : 'bg-slate-800/50 text-gray-400 hover:text-white hover:bg-slate-700/50 border border-white/5'
                     }`}
                 >
                   {cat.name}
@@ -178,8 +177,8 @@ const PortfolioPage = () => {
 
           {/* Projects Grid */}
           <div className={`grid gap-8 transition-all duration-500 ${viewMode === 'grid'
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-              : 'grid-cols-1'
+            ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+            : 'grid-cols-1'
             }`}>
             {filteredProjects.map((project, index) => (
               <div

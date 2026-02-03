@@ -77,8 +77,7 @@ const AboutPage = () => {
 
   return (
     <div className="relative overflow-hidden py-20">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a1a] via-[#0d1a2d] to-[#1a0a20]" />
+      {/* Background transparent to show animated bg from App.jsx */}
 
       {/* Animated orbs */}
       <div
