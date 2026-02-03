@@ -42,9 +42,9 @@ const AboutPage = () => {
   const mouse = useMousePosition();
 
   const stats = [
-    { value: 500, suffix: '+', label: 'Projects Completed', icon: Trophy },
-    { value: 12, suffix: '+', label: 'Years Experience', icon: Crown },
-    { value: 50, suffix: '+', label: 'Team Members', icon: Users },
+    { value: 30, suffix: '+', label: 'Projects Completed', icon: Trophy },
+    { value: 5, suffix: '+', label: 'Years Experience', icon: Crown },
+    { value: 25, suffix: '+', label: 'Team Members', icon: Users },
     { value: 98, suffix: '%', label: 'Client Satisfaction', icon: Heart },
   ];
 

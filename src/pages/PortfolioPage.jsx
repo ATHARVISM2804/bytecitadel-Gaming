@@ -201,13 +201,6 @@ const PortfolioPage = () => {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
 
-                    {/* Play Button */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/30 hover:scale-110 transition-transform duration-300 cursor-pointer">
-                        <Play className="w-6 h-6 text-white fill-white ml-1" />
-                      </div>
-                    </div>
-
                     {/* Tags */}
                     <div className="absolute bottom-4 left-4 flex gap-2">
                       {project.tags.slice(0, 2).map((tag, i) => (
